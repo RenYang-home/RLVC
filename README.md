@@ -2,7 +2,7 @@
 
 The project page for the paper:
 
-> Ren Yang, Fabian Mentzer, Luc Van Gool and Radu Timofte, "Learning for Video Compression with Recurrent Auto-Encoder and Recurrent Probability Model", IEEE Journal of Selected Topics in Signal Processing (J-STSP), 2020. [[Paper]](https://arxiv.org/pdf/2006.13560.pdf)
+> Ren Yang, Fabian Mentzer, Luc Van Gool and Radu Timofte, "Learning for Video Compression with Recurrent Auto-Encoder and Recurrent Probability Model", IEEE Journal of Selected Topics in Signal Processing (J-STSP), 2021. [[Paper]](https://arxiv.org/pdf/2006.13560.pdf)
 
 If our paper and codes are useful for your research, please cite:
 ```
