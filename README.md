@@ -10,7 +10,7 @@ If our paper and codes are useful for your research, please cite:
   title={Learning for Video Compression with Recurrent Auto-Encoder and Recurrent Probability Model},
   author={Yang, Ren and Mentzer, Fabian and Van Gool, Luc and Timofte, Radu},
   journal={IEEE Journal of Selected Topics in Signal Processing},
-  year={2020}
+  year={2021}
 }
 ```
 
