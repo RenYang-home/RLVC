@@ -1,4 +1,4 @@
-# Learning for Video Compression with Hierarchical Quality and Recurrent Enhancement
+# Learning for Video Compression with Recurrent Auto-Encoder and Recurrent Probability Model
 
 The project page for the paper:
 
