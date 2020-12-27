@@ -142,3 +142,6 @@ path_com = args.path + '_' + args.mode + '_' + str(args.l) + '/frames_dec/'
 path_lat = args.path + '_' + args.mode + '_' + str(args.l) + '/latents_dec/'
 ```
 The decoded frames and the compressed frames are expected to be the same (with little difference if using GPU due to non-determinism). The decoded latents and the compressed latents must be exactly the same, otherwise the decoding will be incorrect. Therefore, we use CPU mode (device_count={'GPU': 0}) in RPM to ensure the determinism. Applying the [deterministic TensorFlow-GPU](https://pypi.org/project/tensorflow-determinism/) may be a more elegant way.
+
+## Performance
+
