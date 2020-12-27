@@ -49,6 +49,7 @@ We uploaded a prepared sequence *BasketballPass* here as a test demo, which cont
   (*After downloading, put the folder "tensorflow_compression" to the same directory as the codes.*)
   
 - SciPy 1.2.0
+
   (*Since we use misc.imread, do not use higher versions in which misc.imread is removed.*)
 
 - Pre-trained models ([Download link](https://data.vision.ee.ethz.ch/reyang/model.zip))
