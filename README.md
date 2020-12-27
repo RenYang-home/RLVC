@@ -14,7 +14,7 @@ If our paper and codes are useful for your research, please cite:
 }
 ```
 
-Contact:
+If you have questions or find bugs, please contact:
 
 Ren Yang @ ETH Zurich, Switzerland   
 
