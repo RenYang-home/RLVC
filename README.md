@@ -42,11 +42,14 @@ We uploaded a prepared sequence *BasketballPass* here as a test demo, which cont
 
 - Tensorflow 1.12
   
-  (*Since we train the models on Tensorflow-compression 1.0, which is only compatibable with tf 1.12, the pre-trained models are not compatible with higher versions.*)
+  (*Since we train the models on tensorflow-compression 1.0, which is only compatibable with tf 1.12, the pre-trained models are not compatible with higher versions.*)
 
 - Tensorflow-compression 1.0 ([Download link](https://github.com/tensorflow/compression/releases/tag/v1.0))
 
   (*After downloading, put the folder "tensorflow_compression" to the same directory as the codes.*)
+  
+- SciPy 1.2.0
+  (*Since we use misc.imread, do not use higher versions in which misc.imread is removed.*)
 
 - Pre-trained models ([Download link](https://data.vision.ee.ethz.ch/reyang/model.zip))
 
@@ -60,3 +63,81 @@ We uploaded a prepared sequence *BasketballPass* here as a test demo, which cont
 
   (*In our MS-SSIM model, we use Lee et al., ICLR 2019 to compress I-frames.*)
 
+### Encoder
+
+RLVC.py is the encoder of the RLVC approach. The RLVC codes support the uni-IPPP and bi-IPPP structures (see Sec. V-A in the [paper](https://arxiv.org/abs/1809.10452)). In the augments, "--f_P" denotes the number of P frames to be encoded in the forward direction, and "--b_P" denotes the number of P frames to be encoded in the backward direction. For example, "--f_P 6 --b_P 6" indicates GOP13 (bi-IPPP), which is the default setting of RLVC; "--f_P 9 --b_P 0" indicates GOP10 (uni-IPPP), see Fig. 14 and Fig. 15 in our [paper](https://arxiv.org/abs/1809.10452).
+
+In this code, we use a [Python code for arithetic coding](https://github.com/nayuki/Reference-arithmetic-coding/tree/master/python), which is not optimized towards speed. We provide an option "--entropy_coding" to enable (=1, slow) or disable (=0, fast) the arithmetic coding. If "--entropy_coding 0", the bit-rate will be estimated via PMFs.
+
+The augments in the RLVC encoder (RLVC.py) include:
+
+```
+--path, the path to PNG files;
+
+--frame, the total frame number to compress;
+
+--f_P, number of forward P frames;
+
+--b_P, number of backward P frames;
+
+--mode, compress with the PSNR or MS-SSIM optimized model;
+
+--metric, evaluate quality in terms of PSNR or MS-SSIM;
+
+--python_path, the path to python (only used for the MS-SSIM models to run Lee et al., ICLR 2019 on I-frames);
+
+--CA_model_path, the path to CA_EntropyModel_Test of Lee et al., ICLR 2019 (only used for the MS-SSIM models);
+
+--l, lambda value. The pre-trained PSNR models are trained by 4 lambda values, i.e., 256, 512, 1024 and 2048, with increasing bit-rate/PSNR. The MS-SSIM models are trained with lambda values of 8, 16, 32 and 64, with increasing bit-rate/MS-SSIM;
+
+--entropy_coding, enable (=1) or disable (=0) the artimetic coding.
+```
+For example:
+```
+python RLVC.py --path BasketballPass --f_P 6 --b_P 6 --mode PSNR  --metric PSNR --l 1024
+```
+```
+python RLVC.py --path BasketballPass --f_P 6 --b_P 6 --mode MS-SSIM  --metric MS-SSIM --python python --CA_model_path ./CA_EntropyModel_Test --l 32
+```
+The RLVC encoder generates the compressed frames, the encoded bit-stream and the latent representations in three folders.
+```
+path = args.path + '/'
+path_com = args.path + '_' + args.mode + '_' + str(args.l) + '/frames/'
+path_bin = args.path + '_' + args.mode + '_' + str(args.l) + '/bitstreams/'
+path_lat = args.path + '_' + args.mode + '_' + str(args.l) + '/latents/'
+```
+### Decoder
+
+RLVC_decoder.py is the encoder of the RLVC approach. Note that the decoder is workable only if "--entropy_coding 1" is set in the encoder.
+
+```
+--path, the path to PNG files;
+
+--frame, the total frame number to compress;
+
+--f_P, number of forward P frames;
+
+--b_P, number of backward P frames;
+
+--mode, compress with the PSNR or MS-SSIM optimized model;
+
+--python_path, the path to python (only used for the MS-SSIM models to run Lee et al., ICLR 2019 on I-frames);
+
+--CA_model_path, the path to CA_EntropyModel_Test of Lee et al., ICLR 2019 (only used for the MS-SSIM models);
+
+--l, lambda value. The pre-trained PSNR models are trained by 4 lambda values, i.e., 256, 512, 1024 and 2048, with increasing bit-rate/PSNR. The MS-SSIM models are trained with lambda values of 8, 16, 32 and 64, with increasing bit-rate/MS-SSIM;
+```
+For example:
+```
+python RLVC_decoder.py --path BasketballPass --f_P 6 --b_P 6 --mode PSNR --l 1024
+```
+```
+python RLVC_decoder.py --path BasketballPass --f_P 6 --b_P 6 --mode MS-SSIM --python python --CA_model_path ./CA_EntropyModel_Test --l 32
+```
+The RLVC encoder generates the decoded frames and the decoded latent representations.
+```
+path = args.path + '/'
+path_com = args.path + '_' + args.mode + '_' + str(args.l) + '/frames_dec/'
+path_lat = args.path + '_' + args.mode + '_' + str(args.l) + '/latents_dec/'
+```
+The decoded frames and the compressed frames are expected to be the same (with little difference if using GPU due to non-determinism). The decoded latents and the compressed latents must be exactly the same, otherwise the decoding will be incorrect. Therefore, we use CPU mode (device_count={'GPU': 0}) in RPM to ensure the determinism. Applying the [deterministic TensorFlow-GPU](https://pypi.org/project/tensorflow-determinism/) may be a more elegant way.
