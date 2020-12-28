@@ -68,7 +68,7 @@ We uploaded a prepared sequence *BasketballPass* here as a test demo, which cont
 
 RLVC.py is the encoder of the RLVC approach. The RLVC codes support the uni-IPPP and bi-IPPP structures (see Sec. V-A in the [paper](https://arxiv.org/abs/1809.10452)). In the augments, "--f_P" denotes the number of P frames to be encoded in the forward direction, and "--b_P" denotes the number of P frames to be encoded in the backward direction. For example, "--f_P 6 --b_P 6" indicates GOP13 (bi-IPPP), which is the default setting of RLVC; "--f_P 9 --b_P 0" indicates GOP10 (uni-IPPP), see Fig. 14 and Fig. 15 in our [paper](https://arxiv.org/abs/1809.10452).
 
-In this code, we use a [Python code for arithetic coding](https://github.com/nayuki/Reference-arithmetic-coding/tree/master/python), which is not optimized towards speed. We provide an option "--entropy_coding" to enable (=1, slow) or disable (=0, fast) the arithmetic coding. If "--entropy_coding 0", the bit-rate will be estimated via PMFs.
+In this code, we use a [Python implementation of arithmetic coding](https://github.com/nayuki/Reference-arithmetic-coding/tree/master/python), which is not optimized for speed. We provide an option "--entropy_coding" to enable (=1, slow) or disable (=0, fast) the arithmetic coding. If "--entropy_coding 0", the bit-rate will be estimated via PMFs.
 
 The augments in the RLVC encoder (RLVC.py) include:
 
