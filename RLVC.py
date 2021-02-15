@@ -16,12 +16,12 @@ parser.add_argument("--entropy_coding", type=int, default=1)
 
 args = parser.parse_args()
 
-os.system(args.python_path + ' Recurrent_AutoEncoder.py --frame ' + str(args.frame)
+os.system(args.python_path + ' Recurrent_AutoEncoder.py --path ' + args.path + ' --frame ' + str(args.frame)
           + ' --f_P ' + str(args.f_P) + ' --b_P ' + str(args.b_P) + ' --mode ' + args.mode + ' --metric ' + args.metric
           + ' --python_path ' + args.python_path + ' --CA_model_path ' + args.CA_model_path
           + ' --l ' + str(args.l))
 
-os.system(args.python_path + ' Recurrent_Prob_Model.py --frame ' + str(args.frame)
+os.system(args.python_path + ' Recurrent_Prob_Model.py --path ' + args.path + ' --frame ' + str(args.frame)
           + ' --f_P ' + str(args.f_P) + ' --b_P ' + str(args.b_P) + ' --mode ' + args.mode
           + ' --l ' + str(args.l) + ' --entropy_coding ' + str(args.entropy_coding))
 
