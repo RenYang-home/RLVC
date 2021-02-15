@@ -15,16 +15,16 @@ parser.add_argument("--l", type=int, default=1024, choices=[8, 16, 32, 64, 256, 
 
 args = parser.parse_args()
 
-os.system(args.python_path + ' Bottleneck_decoder.py --frame ' + str(args.frame)
+os.system(args.python_path + ' Bottleneck_decoder.py --path ' + args.path + ' --frame ' + str(args.frame)
           + ' --f_P ' + str(args.f_P) + ' --b_P ' + str(args.b_P) + ' --mode ' + args.mode
           + ' --python_path ' + args.python_path + ' --CA_model_path ' + args.CA_model_path
           + ' --l ' + str(args.l))
 
-os.system(args.python_path + ' RPM_decoder.py --frame ' + str(args.frame)
+os.system(args.python_path + ' RPM_decoder.py --path ' + args.path + ' --frame ' + str(args.frame)
           + ' --f_P ' + str(args.f_P) + ' --b_P ' + str(args.b_P) + ' --mode ' + args.mode
           + ' --l ' + str(args.l))
 
-os.system(args.python_path + ' RAE_decoder.py --frame ' + str(args.frame)
+os.system(args.python_path + ' RAE_decoder.py --path ' + args.path + ' --frame ' + str(args.frame)
           + ' --f_P ' + str(args.f_P) + ' --b_P ' + str(args.b_P) + ' --mode ' + args.mode
           + ' --l ' + str(args.l))
 
