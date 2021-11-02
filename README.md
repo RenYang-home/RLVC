@@ -154,6 +154,10 @@ The decoded frames and the compressed frames are expected to be the same (with l
 
 ## Performance
 
-We follow the previous works [DVC](https://arxiv.org/abs/1812.00101), [HLVC](https://arxiv.org/abs/2003.01966) and [Liu *et al.*, AAAI](https://ojs.aaai.org//index.php/AAAI/article/view/6825) to evaluate the performance on the first 100 frames of the JCT-VC dataset (Classes B, C and D) and all frames of the [UVG](http://ultravideo.cs.tut.fi/#testsequences) dataset (7 videos: Beauty, Bosphorus, HoneyBee, Jockey, ReadySetGo, ShakeNDry and YachtRide). The rate-distortion curves are illustrated below.
+We follow the previous works [DVC](https://arxiv.org/abs/1812.00101), [HLVC](https://arxiv.org/abs/2003.01966) and [Liu *et al.*, AAAI](https://ojs.aaai.org//index.php/AAAI/article/view/6825) to evaluate the performance on the first 100 frames of the JCT-VC dataset (Classes B, C and D) and all frames of the [UVG](http://ultravideo.cs.tut.fi/#testsequences) dataset (7 videos: Beauty, Bosphorus, HoneyBee, Jockey, ReadySetGo, ShakeNDry and YachtRide). 
+
+The rate-distortion performance of each video sequence is shown in "RLVC_results.xlsx".
+
+The rate-distortion curves are illustrated below.
 
 ![ ](RDCurve.png)
