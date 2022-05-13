@@ -1,6 +1,8 @@
 Our other works on learned video compression:
 
-- Hierarchical Learned Video Compression (HLVC) (CVPR 2020) [[Paper](https://arxiv.org/abs/2003.01966)] [[Codes](https://github.com/RenYang-home/HLVC)]
+- Perceptual Learned Video Compression (PLVC) (**IJCAI 2022**) [[Paper](https://arxiv.org/abs/2109.03082)]
+
+- Hierarchical Learned Video Compression (HLVC) (**CVPR 2020**) [[Paper](https://arxiv.org/abs/2003.01966)] [[Codes](https://github.com/RenYang-home/HLVC)]
 
 - OpenDVC: An open source implementation of DVC [[Codes](https://github.com/RenYang-home/OpenDVC)] [[Technical report](https://arxiv.org/abs/2006.15862)]
 
