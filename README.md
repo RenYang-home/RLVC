@@ -2,7 +2,7 @@ Our other works on learned video compression:
 
 - Advanced Learned Video Compression (ALVC) (**IEEE T-CSVT 2022**) [[Paper](https://ieeexplore.ieee.org/abstract/document/9950550)] [[Codes](https://github.com/RenYang-home/ALVC)]
 
-- Perceptual Learned Video Compression (PLVC) (**IJCAI 2022**) [[Paper](https://arxiv.org/abs/2109.03082)]
+- Perceptual Learned Video Compression (PLVC) (**IJCAI 2022**) [[Paper](https://arxiv.org/abs/2109.03082)] [[Codes](https://github.com/RenYang-home/PLVC)]
 
 - Hierarchical Learned Video Compression (HLVC) (**CVPR 2020**) [[Paper](https://arxiv.org/abs/2003.01966)] [[Codes](https://github.com/RenYang-home/HLVC)]
 
